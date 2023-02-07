@@ -1,10 +1,10 @@
 <template>
   <ul class="sidenav app-sidenav" :class="{open: isOpen}">
-    <li v-for="link in links" :key="link.url">
-      <router-link active-class="active" :to="link.url" :exact="link.exact">
-        {{link.title}}
-      </router-link>
-    </li>
+    <router-link v-for="link in links" :key="link.url" :to="link.url" v-slot="{ href, isActive, isExactActive }">
+      <li :class="[isActive && 'active', isExactActive && 'router-link-exact-active']">
+        <a :href="href">{{ link.title }}</a>
+      </li>
+    </router-link>
     </ul>
 </template>
 
@@ -16,8 +16,7 @@ export default {
     links: [
       {
         title: 'Счет',
-        url: '/',
-        exact: true
+        url: '/'
       },
       {
         title: 'История',
