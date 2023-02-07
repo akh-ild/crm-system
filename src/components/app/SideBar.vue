@@ -1,5 +1,5 @@
 <template>
-  <ul class="sidenav app-sidenav open">
+  <ul class="sidenav app-sidenav" :class="{open: isOpen}">
     <li v-for="link in links" :key="link.url">
       <router-link active-class="active" :to="link.url" :exact="link.exact">
         {{link.title}}
@@ -11,6 +11,7 @@
 <script>
 
 export default {
+  props: ['isOpen'],
   data: () => ({
     links: [
       {

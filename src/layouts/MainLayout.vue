@@ -1,9 +1,13 @@
 <template>
   <div class="app-main-layout">
-    <Navbar />
+    <div style="color:#000;z-index:1000">
+      {{isOpen}}
+    </div>
+    <Navbar @toggle="onClick" />
 
-    <Sidebar />
-    <main class="app-content">
+    <Sidebar :is-open="isOpen" />
+
+    <main :class="{full: !isOpen}" class="app-content">
       <div class="app-page">
         <router-view />
       </div>
@@ -25,6 +29,14 @@ export default {
   name: 'main-layout',
   components: {
     Navbar, Sidebar
+  },
+  data: () => ({
+    isOpen: true
+  }),
+  methods: {
+    onClick () {
+      this.isOpen = !this.isOpen
+    }
   }
 }
 </script>
