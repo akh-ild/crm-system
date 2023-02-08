@@ -34,6 +34,7 @@
 <script>
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
+import messages from '@/utils/messages'
 
 export default {
   name: 'login',
@@ -58,6 +59,11 @@ export default {
     },
     shortPassword () {
       return this.v$.password.$dirty && this.v$.password.minLength.$invalid
+    }
+  },
+  mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
     }
   },
   methods: {
