@@ -1,8 +1,5 @@
 <template>
   <div class="app-main-layout">
-    <div style="color:#000;z-index:1000">
-      {{isOpen}}
-    </div>
     <Navbar @toggle="onClick" />
 
     <Sidebar :is-open="isOpen" />
@@ -30,9 +27,11 @@ export default {
   components: {
     Navbar, Sidebar
   },
-  data: () => ({
-    isOpen: true
-  }),
+  data () {
+    return {
+      isOpen: true
+    }
+  },
   methods: {
     onClick () {
       this.isOpen = !this.isOpen

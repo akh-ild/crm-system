@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="$emit('toggle')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{ dateFilter(date) }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -36,15 +36,43 @@
 
 <script>
 export default {
+  data () {
+    return {
+      date: new Date()
+    }
+  },
   mounted () {
-    window.M.Dropdown.init(this.$refs.dropdown, {
+    this.interval = setInterval(() => {
+      this.date = new Date()
+    }, 1000)
+    this.dropdown = window.M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false
     })
   },
+  unmounted () {
+    clearInterval(this.interval)
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy()
+    }
+  },
   methods: {
     logout () {
-      console.log('logout')
       this.$router.push('/login?message=logout')
+    },
+    dateFilter (value, format = 'date') {
+      value = this.date
+      const options = {}
+
+      if (format.includes('date')) {
+        options.day = '2-digit'
+        options.month = 'long'
+        options.year = 'numeric'
+        options.hour = '2-digit'
+        options.minute = '2-digit'
+        options.second = '2-digit'
+      }
+
+      return new Intl.DateTimeFormat('en-EN', options).format(new Date(value))
     }
   }
 }
