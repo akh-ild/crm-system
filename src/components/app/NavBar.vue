@@ -11,7 +11,7 @@
       <ul class="right hide-on-small-and-down">
         <li>
           <a ref="dropdown" class="dropdown-trigger black-text" href="#" data-target="dropdown">
-            USER NAME
+            {{ name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -39,6 +39,11 @@ export default {
   data () {
     return {
       date: new Date()
+    }
+  },
+  computed: {
+    name () {
+      return this.$store.getters.info.name
     }
   },
   mounted () {
