@@ -7,14 +7,12 @@
         </a>
         <span class="black-text">{{ dateFilter(date) }}</span>
       </div>
-
       <ul class="right hide-on-small-and-down">
         <li>
           <a ref="dropdown" class="dropdown-trigger black-text" href="#" data-target="dropdown">
             {{ name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
-
           <ul id='dropdown' class='dropdown-content'>
             <li>
               <router-link to="/profile" class="black-text">
@@ -36,6 +34,7 @@
 
 <script>
 export default {
+  name: 'nav-bar',
   data () {
     return {
       date: new Date()
@@ -71,14 +70,14 @@ export default {
 
       if (format.includes('date')) {
         options.day = '2-digit'
-        options.month = 'long'
+        options.month = '2-digit'
         options.year = 'numeric'
         options.hour = '2-digit'
         options.minute = '2-digit'
         options.second = '2-digit'
       }
 
-      return new Intl.DateTimeFormat('en-EN', options).format(new Date(value))
+      return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
     }
   }
 }

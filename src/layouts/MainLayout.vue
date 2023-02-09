@@ -1,15 +1,12 @@
 <template>
   <div class="app-main-layout">
     <Navbar @toggle="onClick" />
-
     <Sidebar :is-open="isOpen" />
-
     <main :class="{full: !isOpen}" class="app-content">
       <div class="app-page">
         <router-view />
       </div>
     </main>
-
     <div class="fixed-action-btn">
       <router-link class="btn-floating btn-large blue" to="/record">
         <i class="large material-icons">add</i>

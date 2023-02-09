@@ -11,6 +11,7 @@
 <script>
 
 export default {
+  name: 'side-bar',
   props: ['isOpen'],
   data () {
     return {

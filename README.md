@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Technologies
+Vue 3, Vue cli, Vue router, Vuelidate, Firebase, Curency API (https://apilayer.com/marketplace/exchangerates_data-api)
