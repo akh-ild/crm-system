@@ -33,7 +33,7 @@
 <script>
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
-
+// TODO decomposition select, input, button
 export default {
   name: 'category-edit',
   props: {

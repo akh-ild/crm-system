@@ -1,5 +1,5 @@
 // import firebase from 'firebase/compat/app'
-import { getDatabase, ref, get } from 'firebase/database'
+import { getDatabase, ref, get, update } from 'firebase/database'
 
 export default {
   state: {
@@ -26,7 +26,19 @@ export default {
           commit('setInfo', data)
         })
       } catch (e) {
-        console.log(e)
+        commit('setError', e)
+        throw e
+      }
+    },
+    async updateInfo ({ dispatch, commit, getters }, toUpdate) {
+      try {
+        const db = getDatabase()
+        const uid = await dispatch('getUserId')
+        const updateData = { ...getters.info, ...toUpdate }
+        await update(ref(db, `/users/${uid}`), updateData).then(() => this.commit('setInfo', updateData))
+      } catch (e) {
+        commit('setError', e)
+        throw e
       }
     }
   }
