@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="$emit('toggle')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ dateFilter(date) }}</span>
+        <span class="black-text">{{ date.toLocaleString() }}</span>
       </div>
       <ul class="right hide-on-small-and-down">
         <li>
@@ -63,21 +63,6 @@ export default {
     async logout () {
       await this.$store.dispatch('logout')
       this.$router.push('/login?message=logout')
-    },
-    dateFilter (value, format = 'date') {
-      value = this.date
-      const options = {}
-
-      if (format.includes('date')) {
-        options.day = '2-digit'
-        options.month = '2-digit'
-        options.year = 'numeric'
-        options.hour = '2-digit'
-        options.minute = '2-digit'
-        options.second = '2-digit'
-      }
-
-      return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
     }
   }
 }
