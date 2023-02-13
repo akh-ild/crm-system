@@ -12,7 +12,7 @@
           <strong>{{ cat.title }}</strong>
           {{ `${currencyFilter(cat.spend)} из ${currencyFilter(cat.limit)}` }}
         </p>
-        <div class="progress" >
+        <div class="progress" v-tooltip:[value]="cat.tooltip">
           <div class="determinate" :style="{width:`${cat.progressPercent}%`}" :class="cat.progressColor"></div>
         </div>
       </div>
@@ -69,11 +69,15 @@ export default {
         const percent = 100 * spend / cat.limit
         const progressPercent = percent > 100 ? 100 : percent
         const progressColor = percent < 60 ? 'green' : percent < 100 ? 'yellow' : 'red'
+
+        const tooltipValue = cat.limit - spend
+        const tooltip = `${tooltipValue < 0 ? 'Превышение на' : 'Осталось'} ${this.currencyFilter(Math.abs(tooltipValue))}`
         return {
           ...cat,
           progressPercent,
           progressColor,
-          spend
+          spend,
+          tooltip
         }
       })
     }

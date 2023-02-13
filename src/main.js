@@ -6,6 +6,7 @@ import store from './store'
 import messagePlugin from './utils/message.plugin'
 
 import 'materialize-css/dist/js/materialize.min.js'
+import tooltipDirective from './directives/tooltip.directive'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -24,5 +25,5 @@ firebase.initializeApp(firebaseConfig)
 
 let app
 firebase.auth().onAuthStateChanged(() => {
-  if (!app) app = createApp(App).use(store).use(router).use(messagePlugin).mount('#app')
+  if (!app) app = createApp(App).directive('tooltip', tooltipDirective).use(store).use(router).use(messagePlugin).mount('#app')
 })
