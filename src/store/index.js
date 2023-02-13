@@ -8,14 +8,12 @@ export default createStore({
   state: {
     error: null,
     currency: null,
-    isLoading: true,
-    categories: []
+    isLoading: true
   },
   getters: {
     error: state => state.error,
     currency: state => state.currency,
-    isLoading: state => state.isLoading,
-    categories: state => state.categories
+    isLoading: state => state.isLoading
   },
   mutations: {
     setError (state, error) {
@@ -29,9 +27,6 @@ export default createStore({
     },
     setIsLoading (state, bool) {
       state.isLoading = bool
-    },
-    setCategories (state, categories) {
-      state.categories = categories
     }
   },
   actions: {

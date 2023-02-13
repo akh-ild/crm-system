@@ -2,6 +2,17 @@
 import { getDatabase, ref, push, get, child, update } from 'firebase/database'
 
 export default {
+  state: {
+    categories: null
+  },
+  getters: {
+    categories: state => state.categories
+  },
+  mutations: {
+    setCategories (state, categories) {
+      state.categories = categories
+    }
+  },
   actions: {
     async createCategory ({ commit, dispatch }, details) {
       const { title, limit } = details
@@ -38,9 +49,9 @@ export default {
       try {
         const uid = await dispatch('getUserId')
         await get(ref(db, `/users/${uid}/categories`)).then((info) => {
-          let data = info.val() || {}
-          data = Object.keys(data).map(key => ({ ...data[key], id: key }))
-          commit('setCategories', data)
+          const data = info.val() || {}
+          const categories = Object.keys(data).map(key => ({ ...data[key], id: key }))
+          commit('setCategories', categories)
           commit('setIsLoading', false)
         })
       } catch (e) {

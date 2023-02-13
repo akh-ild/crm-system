@@ -102,7 +102,7 @@ export default {
         return
       }
       const formData = {
-        id: this.current,
+        categoryId: this.current,
         type: this.type,
         amount: this.amount,
         description: this.description,

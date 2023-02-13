@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// TODO filters
 export default {
   props: {
     currency: {
