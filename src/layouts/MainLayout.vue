@@ -8,7 +8,7 @@
       </div>
     </main>
     <div class="fixed-action-btn">
-      <router-link class="btn-floating btn-large blue" to="/record">
+      <router-link class="btn-floating btn-large blue" to="/record" v-tooltip="'Создать новую запись'">
         <i class="large material-icons">add</i>
       </router-link>
     </div>
@@ -18,6 +18,7 @@
 <script>
 import Navbar from '@/components/app/NavBar'
 import Sidebar from '@/components/app/SideBar'
+import messages from '@/utils/messages'
 
 export default {
   name: 'main-layout',
@@ -27,6 +28,16 @@ export default {
   data () {
     return {
       isOpen: true
+    }
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error (fbError) {
+      this.$error(messages[fbError.code] || 'Something wrong')
     }
   },
   async mounted () {
