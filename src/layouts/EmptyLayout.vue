@@ -8,6 +8,7 @@
 import messages from '@/utils/messages'
 
 export default {
+  name: 'empty-layout',
   computed: {
     error () {
       return this.$store.getters.error
