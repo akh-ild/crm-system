@@ -3,11 +3,15 @@ import _ from 'lodash'
 export default {
   data () {
     return {
-      page: +this.$route.query.page || 1,
       pageSize: 5,
       pageCount: 0,
       allItems: [],
       items: []
+    }
+  },
+  computed: {
+    page () {
+      return +this.$route.query.page || 1
     }
   },
   methods: {
