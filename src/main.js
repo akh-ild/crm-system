@@ -12,6 +12,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 
+import Paginate from 'vuejs-paginate-next'
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyATsu60pi7JRc4cLNShQ4BRGy4FQhey6LI',
@@ -25,5 +27,5 @@ firebase.initializeApp(firebaseConfig)
 
 let app
 firebase.auth().onAuthStateChanged(() => {
-  if (!app) app = createApp(App).directive('tooltip', tooltipDirective).use(store).use(router).use(messagePlugin).mount('#app')
+  if (!app) app = createApp(App).directive('tooltip', tooltipDirective).use(store).use(Paginate).use(router).use(messagePlugin).mount('#app')
 })

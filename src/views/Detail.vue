@@ -51,14 +51,13 @@ export default {
   },
   methods: {
     setParams () {
-      const params = (new URL(document.location)).searchParams
-      this.categoryName = params.get('categoryName')
-      this.amount = params.get('amount')
-      this.date = params.get('date')
-      this.description = params.get('description')
-      this.typeText = params.get('typeText')
-      this.typeClass = params.get('typeClass')
-      this.id = params.get('id')
+      this.categoryName = this.$route.query.categoryName
+      this.amount = this.$route.query.amount
+      this.date = this.$route.query.date
+      this.description = this.$route.query.description
+      this.typeText = this.$route.query.typeText
+      this.typeClass = this.$route.query.typeClass
+      this.id = this.$route.query.id
     },
     currencyFilter (value, currency = 'USD') {
       return new Intl.NumberFormat('ru-RU', {

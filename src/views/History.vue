@@ -9,20 +9,34 @@
     <Loader v-if="isLoading" />
     <p class="center" v-else-if="!mapedRecords.length">Записей пока нет <router-link to="/record">Добавить запись</router-link></p>
     <section v-else>
-      <HistoryTable :records="mapedRecords" />
+      <HistoryTable :records="items" />
+      <paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="onPageChange"
+        :prev-text="'Назад'"
+        :next-text="'Вперед'"
+        container-class="pagination"
+        page-class="waves-effect"
+      >
+      </paginate>
     </section>
   </div>
 </template>
 
 <script>
+import paginationMixin from '@/mixins/pagination.mixin'
 import HistoryTable from '@/components/HistoryTable.vue'
 import Loader from '@/components/app/Loader'
+import Paginate from 'vuejs-paginate-next'
 
 export default {
   name: 'history',
+  mixins: [paginationMixin],
   components: {
     HistoryTable,
-    Loader
+    Loader,
+    paginate: Paginate
   },
   data () {
     return {
@@ -51,6 +65,7 @@ export default {
         typeText: record.type === 'income' ? 'Доход' : 'Расход'
       }
     })
+    this.setupPagination(this.mapedRecords)
   }
 }
 </script>
