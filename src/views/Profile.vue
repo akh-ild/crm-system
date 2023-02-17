@@ -12,7 +12,7 @@
       <div class="switch">
         <label>
           English
-          <input type="checkbox">
+          <input type="checkbox" v-model="isRu" @change="onChange">
           <span class="lever"></span>
           Русский
         </label>
@@ -33,7 +33,9 @@ import { required } from '@vuelidate/validators'
 export default {
   data () {
     return {
-      name: ''
+      name: '',
+      isRu: true,
+      lang: 'ru'
     }
   },
   setup () {
@@ -44,6 +46,7 @@ export default {
   },
   mounted () {
     this.name = this.info.name
+    this.lang = this.info.lang === 'ru'
     setTimeout(() => window.M.updateTextFields(), 0)
   },
   methods: {
@@ -55,11 +58,16 @@ export default {
       }
       try {
         await this.updateInfo({
-          name: this.name
+          name: this.name,
+          lang: this.lang
         })
       } catch (e) {
         console.log('profile/onsubmit', e)
       }
+    },
+    onChange () {
+      this.lang = this.isRu ? 'ru' : 'en'
+      console.log(this.lang)
     }
   },
   validations () {

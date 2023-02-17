@@ -18,7 +18,7 @@
 <script>
 import Navbar from '@/components/app/NavBar'
 import Sidebar from '@/components/app/SideBar'
-import messages from '@/utils/messages'
+import messages from '@/utils/message/messages'
 
 export default {
   name: 'main-layout',

@@ -34,7 +34,7 @@
 <script>
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
-import messages from '@/utils/messages'
+import messages from '@/utils/message/messages'
 
 export default {
   name: 'login',

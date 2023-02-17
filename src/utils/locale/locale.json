@@ -1,0 +1,34 @@
+{
+  "profile-title": {
+    "ru": "Профиль",
+    "en": "Profile"
+  },
+  "placeholder-name": {
+    "ru": "Имя",
+    "en": "Name"
+  },
+  "button-refresh": {
+    "ru": "Обновить",
+    "en": "Refresh"
+  },
+  "bill": {
+    "ru": "Счет",
+    "en": "Bill"
+  },
+  "history": {
+    "ru": "История",
+    "en": "History"
+  },
+  "planning": {
+    "ru": "Планирование",
+    "en": "Planning"
+  },
+  "new-record": {
+    "ru": "Новая запись",
+    "en": "New record"
+  },
+  "categories": {
+    "ru": "Категории",
+    "en": "Categoties"
+  }
+}

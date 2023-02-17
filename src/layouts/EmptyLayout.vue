@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import messages from '@/utils/messages'
+import messages from '@/utils/message/messages'
 
 export default {
   name: 'empty-layout',
