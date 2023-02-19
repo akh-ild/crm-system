@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import locale from './utils/locale/locale'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import messagePlugin from './utils/message/message.plugin'
-import locale from './utils/locale/locale'
 
 import 'materialize-css/dist/js/materialize.min.js'
 import tooltipDirective from './directives/tooltip.directive'
@@ -28,5 +28,5 @@ firebase.initializeApp(firebaseConfig)
 
 let app
 firebase.auth().onAuthStateChanged(() => {
-  if (!app) app = createApp(App).directive('tooltip', tooltipDirective).use(store).use(Paginate).use(router).use(messagePlugin).use(locale).mount('#app')
+  if (!app) app = createApp(App).use(locale).directive('tooltip', tooltipDirective).use(store).use(Paginate).use(router).use(messagePlugin).mount('#app')
 })

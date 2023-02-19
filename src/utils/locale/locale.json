@@ -30,5 +30,13 @@
   "categories": {
     "ru": "Категории",
     "en": "Categoties"
+  },
+  "history-record": {
+    "ru": "История записей",
+    "en": "Record history"
+  },
+  "exit": {
+    "ru": "Выйти",
+    "en": "Exit"
   }
 }

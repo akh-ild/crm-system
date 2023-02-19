@@ -17,23 +17,23 @@ export default {
     return {
       links: [
         {
-          title: 'Счет',
+          title: this.$locale('bill'),
           url: '/'
         },
         {
-          title: 'История',
+          title: this.$locale('history'),
           url: '/history'
         },
         {
-          title: 'Планирование',
+          title: this.$locale('planning'),
           url: '/planning'
         },
         {
-          title: 'Новая запись',
+          title: this.$locale('new-record'),
           url: '/record'
         },
         {
-          title: 'Категории',
+          title: this.$locale('categories'),
           url: '/categories'
         }
       ]

@@ -1,14 +1,18 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>{{ $locale('profile-title') }}</h3>
     </div>
     <form class="form" @submit.prevent="onSubmit">
       <div class="input-field">
         <input id="description" type="text" v-model="name" :class="{ invalid: v$.name.$error }" @focus="v$.name.$reset()">
-        <label for="description">Имя</label>
+        <label for="description">{{ $locale('placeholder-name')}}</label>
         <span v-if="v$.name.$error" class="helper-text invalid">Введите имя</span>
       </div>
+      <button class="btn waves-effect waves-light" type="submit">
+        {{ $locale('button-refresh') }}
+        <i class="material-icons right">send</i>
+      </button>
       <div class="switch">
         <label>
           English
@@ -17,10 +21,6 @@
           Русский
         </label>
       </div>
-      <button class="btn waves-effect waves-light" type="submit">
-        Обновить
-        <i class="material-icons right">send</i>
-      </button>
     </form>
   </div>
 </template>
@@ -34,8 +34,7 @@ export default {
   data () {
     return {
       name: '',
-      isRu: true,
-      lang: 'ru'
+      isRu: true
     }
   },
   setup () {
@@ -45,9 +44,11 @@ export default {
     ...mapGetters(['info'])
   },
   mounted () {
-    this.name = this.info.name
-    this.lang = this.info.lang === 'ru'
-    setTimeout(() => window.M.updateTextFields(), 0)
+    setTimeout(() => {
+      window.M.updateTextFields()
+      this.name = this.info.name
+      this.isRu = this.info.lang === 'ru'
+    }, 0)
   },
   methods: {
     ...mapActions(['updateInfo']),
@@ -59,15 +60,20 @@ export default {
       try {
         await this.updateInfo({
           name: this.name,
-          lang: this.lang
+          lang: this.isRu ? 'ru' : 'en'
         })
       } catch (e) {
         console.log('profile/onsubmit', e)
       }
     },
-    onChange () {
-      this.lang = this.isRu ? 'ru' : 'en'
-      console.log(this.lang)
+    async onChange () {
+      try {
+        await this.updateInfo({
+          lang: this.isRu ? 'ru' : 'en'
+        })
+      } catch (e) {
+        console.log('profile/onchange', e)
+      }
     }
   },
   validations () {
@@ -80,6 +86,6 @@ export default {
 
 <style scoped>
 .switch {
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 </style>

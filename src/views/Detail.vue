@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link to="/history" class="breadcrumb">{{ $locale('history') }}</router-link>
         <a class="breadcrumb">
           {{ typeText }}
         </a>
