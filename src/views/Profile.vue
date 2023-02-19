@@ -44,11 +44,9 @@ export default {
     ...mapGetters(['info'])
   },
   mounted () {
-    setTimeout(() => {
-      window.M.updateTextFields()
-      this.name = this.info.name
-      this.isRu = this.info.lang === 'ru'
-    }, 0)
+    this.name = this.info.name
+    this.isRu = this.info.lang === 'ru'
+    setTimeout(() => { window.M.updateTextFields() }, 0)
   },
   methods: {
     ...mapActions(['updateInfo']),

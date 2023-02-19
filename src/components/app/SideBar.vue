@@ -1,6 +1,6 @@
 <template>
   <ul class="sidenav app-sidenav" :class="{open: isOpen}">
-    <router-link v-for="link in links" :key="link.url" :to="link.url" v-slot="{ href, isActive, isExactActive }">
+    <router-link v-for="link in links" :key="link.url + lang" :to="link.url" v-slot="{ href, isActive, isExactActive }">
       <li :class="[isActive && 'active', isExactActive && 'router-link-exact-active']">
         <a :href="href">{{ link.title }}</a>
       </li>
@@ -13,9 +13,13 @@
 export default {
   name: 'side-bar',
   props: ['isOpen'],
-  data () {
-    return {
-      links: [
+  computed: {
+    lang () {
+      console.log(this.$store.getters.info.lang)
+      return this.$store.getters.info.lang
+    },
+    links () {
+      return [
         {
           title: this.$locale('bill'),
           url: '/'
