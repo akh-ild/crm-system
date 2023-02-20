@@ -1,4 +1,7 @@
 <template>
+  <metainfo>
+    <template v-slot:title="{ content }">{{ content ? `${content}` : `SITE_NAME` }}</template>
+  </metainfo>
   <div id="app">
     <component :is="layout">
       <router-view/>
@@ -7,10 +10,16 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
 
 export default {
+  setup () {
+    useMeta({
+      title: ''
+    })
+  },
   components: {
     EmptyLayout, MainLayout
   },

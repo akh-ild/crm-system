@@ -5,6 +5,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import messagePlugin from './utils/message/message.plugin'
+import { createMetaManager } from 'vue-meta'
 
 import 'materialize-css/dist/js/materialize.min.js'
 import tooltipDirective from './directives/tooltip.directive'
@@ -28,5 +29,5 @@ firebase.initializeApp(firebaseConfig)
 
 let app
 firebase.auth().onAuthStateChanged(() => {
-  if (!app) app = createApp(App).use(locale).directive('tooltip', tooltipDirective).use(store).use(Paginate).use(router).use(messagePlugin).mount('#app')
+  if (!app) app = createApp(App).use(locale).directive('tooltip', tooltipDirective).use(store).use(Paginate).use(router).use(messagePlugin).use(createMetaManager()).mount('#app')
 })

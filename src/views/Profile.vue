@@ -26,11 +26,13 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import { mapGetters, mapActions } from 'vuex'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
 export default {
+  name: 'profile',
   data () {
     return {
       name: '',
@@ -38,6 +40,7 @@ export default {
     }
   },
   setup () {
+    useMeta({ title: 'Profile' })
     return { v$: useVuelidate() }
   },
   computed: {

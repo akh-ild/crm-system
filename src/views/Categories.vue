@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import CategoryCreate from '@/components/Category/CategoryCreate'
 import CategoryEdit from '@/components/Category/CategoryEdit'
 import Loader from '@/components/app/Loader.vue'
@@ -23,6 +24,9 @@ export default {
   name: 'categories',
   components: {
     CategoryCreate, CategoryEdit, Loader
+  },
+  setup () {
+    useMeta({ title: 'Categories' })
   },
   computed: {
     isLoading () {

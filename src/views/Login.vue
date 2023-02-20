@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
 import messages from '@/utils/message/messages'
@@ -45,6 +46,7 @@ export default {
     }
   },
   setup () {
+    useMeta({ title: 'Login' })
     return { v$: useVuelidate() }
   },
   computed: {

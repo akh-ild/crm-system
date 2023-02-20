@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import Loader from '@/components/app/Loader'
 import { mapGetters } from 'vuex'
 
@@ -28,6 +29,9 @@ export default {
   name: 'planning',
   components: {
     Loader
+  },
+  setup () {
+    useMeta({ title: 'Planning' })
   },
   data () {
     return {

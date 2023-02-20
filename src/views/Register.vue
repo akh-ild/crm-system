@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
 
@@ -57,6 +58,7 @@ export default {
     }
   },
   setup () {
+    useMeta({ title: 'Register' })
     return { v$: useVuelidate() }
   },
   computed: {

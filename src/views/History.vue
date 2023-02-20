@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import paginationMixin from '@/mixins/pagination.mixin'
 import HistoryTable from '@/components/HistoryTable.vue'
 import Loader from '@/components/app/Loader'
@@ -39,6 +40,9 @@ export default {
     HistoryTable,
     Loader,
     paginate: Paginate
+  },
+  setup () {
+    useMeta({ title: 'History' })
   },
   data () {
     return {

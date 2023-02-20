@@ -15,7 +15,6 @@ export default {
   props: ['isOpen'],
   computed: {
     lang () {
-      console.log(this.$store.getters.info.lang)
       return this.$store.getters.info.lang
     },
     links () {

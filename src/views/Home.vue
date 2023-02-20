@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import HomeBill from '@/components/Home/HomeBill.vue'
 import HomeCurrency from '@/components/Home/HomeCurrency.vue'
 import Loader from '@/components/app/Loader.vue'
@@ -23,6 +24,9 @@ export default {
   name: 'home',
   components: {
     HomeBill, HomeCurrency, Loader
+  },
+  setup () {
+    useMeta({ title: 'Home' })
   },
   computed: {
     isLoading () {

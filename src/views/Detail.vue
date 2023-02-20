@@ -23,9 +23,13 @@
   </div>
 </template>
 <script>
+import { useMeta } from 'vue-meta'
 // TODO add check id
 export default {
   name: 'detail',
+  setup () {
+    useMeta({ title: 'Detail' })
+  },
   data () {
     return {
       categoryName: '',

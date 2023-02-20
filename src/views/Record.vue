@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { useMeta } from 'vue-meta'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
 import Loader from '@/components/app/Loader.vue'
@@ -63,6 +64,7 @@ export default {
     }
   },
   setup () {
+    useMeta({ title: 'Record' })
     return { v$: useVuelidate() }
   },
   computed: {
