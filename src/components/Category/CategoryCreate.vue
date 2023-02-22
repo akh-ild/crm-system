@@ -5,20 +5,25 @@
         <h4>Создать</h4>
       </div>
       <form @submit.prevent="onSubmit">
-        <div class="input-field">
-          <input id="name" type="text" v-model="title" :class="{ invalid: v$.title.$error }" @focus="v$.title.$reset()">
-          <label for="name">Название</label>
-          <span v-if="v$.title.$error" class="helper-text invalid">Введите название</span>
-        </div>
-        <div class="input-field">
-          <input id="limit" type="number" v-model.number="limit" :class="{ invalid: v$.limit.$error }" @focus="v$.limit.$reset()">
-          <label for="limit">Лимит</label>
-          <span v-if="v$.limit.$error" class="helper-text invalid">Введите лимит (минимальное значение {{ v$.limit.minValue.$params.min }})</span>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit">
-          Создать
-          <i class="material-icons right">send</i>
-        </button>
+        <Input
+          name="name"
+          type="text"
+          v-model="title"
+          label="Название"
+          :isError="v$.title.$error"
+          @resetField="v$.title.$reset()"
+          errorText="Введите название"
+        />
+        <Input
+          name="limit"
+          type="number"
+          v-model.number="limit"
+          label="Лимит"
+          :isError="v$.limit.$error"
+          @resetField="v$.limit.$reset()"
+          :errorText="`Введите лимит (минимальное значение {{ v$.limit.minValue.$params.min }})`"
+        />
+        <Button>Создать</Button>
       </form>
     </div>
   </div>
@@ -27,9 +32,14 @@
 <script>
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
+import Button from '@/components/form/Button'
+import Input from '@/components/form/Input'
 
 export default {
   name: 'category-create',
+  components: {
+    Button, Input
+  },
   data () {
     return {
       title: '',

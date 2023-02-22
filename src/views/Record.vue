@@ -6,38 +6,34 @@
     <Loader v-if="isLoading" />
     <p class="center" v-else-if="!categories.length">Категорий пока нет <router-link to="/categories">Добавить категорию</router-link></p>
     <form v-else class="form" @submit.prevent="onSubmit">
-      <div class="input-field" >
-        <select ref="select" v-model="current">
-          <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
-        </select>
-        <label>Выберите категорию</label>
-      </div>
-      <p>
-        <label>
-          <input class="with-gap" name="type" type="radio" value="income" v-model="type">
-          <span>Доход</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input class="with-gap" name="type" type="radio" value="outcome" v-model="type">
-          <span>Расход</span>
-        </label>
-      </p>
-      <div class="input-field">
-        <input id="amount" type="number" v-model.number="amount" :class="{ invalid: v$.amount.$error }" @focus="v$.amount.$reset()">
-        <label for="amount">Сумма</label>
-        <span v-if="v$.amount.$error" class="helper-text invalid">Введите сумму (минимальное значение {{ v$.amount.minValue.$params.min }})</span>
-      </div>
-      <div class="input-field">
-        <input id="description" type="text" v-model="description" :class="{ invalid: v$.description.$error }" @focus="v$.description.$reset()">
-        <label for="description">Описание</label>
-        <span v-if="v$.description.$error" class="helper-text invalid">Введите описание</span>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit">
-        Создать
-        <i class="material-icons right">send</i>
-      </button>
+      <Select
+        v-model="current"
+        :items="categories"
+        label="Выберите категорию"
+      />
+      <RadioButtons
+        :items="radioItems"
+        v-model="type"
+      />
+      <Input
+        name="amount"
+        type="number"
+        v-model.number="amount"
+        label="Сумма"
+        :isError="v$.amount.$error"
+        @resetField="v$.amount.$reset()"
+        :errorText="`Введите сумму (минимальное значение {{ v$.amount.minValue.$params.min }})`"
+      />
+      <Input
+        name="description"
+        type="text"
+        v-model.number="description"
+        label="Описание"
+        :isError="v$.description.$error"
+        @resetField="v$.description.$reset()"
+        errorText="Введите описание"
+      />
+      <Button>Создать</Button>
     </form>
   </div>
 </template>
@@ -46,21 +42,36 @@
 import { useMeta } from 'vue-meta'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
-import Loader from '@/components/app/Loader.vue'
+import Loader from '@/components/app/Loader'
+import Input from '@/components/form/Input'
+import Button from '@/components/form/Button'
+import Select from '@/components/form/Select'
+import RadioButtons from '@/components/form/RadioButtons'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'record',
   components: {
-    Loader
+    Loader, Input, Button, Select, RadioButtons
   },
   data () {
     return {
-      select: null,
       current: null,
       type: 'outcome',
       amount: 1,
-      description: ''
+      description: '',
+      radioItems: [
+        {
+          name: 'type',
+          value: 'income',
+          label: 'Доход'
+        },
+        {
+          name: 'type',
+          value: 'outcome',
+          label: 'Расход'
+        }
+      ]
     }
   },
   setup () {
@@ -87,15 +98,7 @@ export default {
     if (this.categories.length) {
       this.current = this.categories[0].id
     }
-    setTimeout(() => {
-      this.select = window.M.FormSelect.init(this.$refs.select)
-    }, 0)
     window.M.updateTextFields()
-  },
-  unmounted () {
-    if (this.select && this.select.destroy) {
-      this.select.destroy()
-    }
   },
   methods: {
     async onSubmit () {

@@ -28,3 +28,6 @@ https://vuejsexamples.com/a-vue-3-component-to-make-pagination-based-on-vuejs-pa
 
 ### Technologies
 Vue 3, Vue cli, Vue router, Vuelidate, Firebase, Curency API (https://apilayer.com/marketplace/exchangerates_data-api), vue-chartjs
+
+### issues
+binding with v-model: https://youtrack.jetbrains.com/issue/WEB-50792/Vue-3-Component-binded-with-v-model-should-not-warn-when-the-prop-definition-for-model-value-is-defined-as-required
